@@ -5,6 +5,12 @@ export default {
     state: {
         stocks: []
     },
+    getters: {
+        // retorna as acoes disponiveis para compra
+        stocks(state) {
+            return state.stocks
+        }
+    },
     mutations: {
         // setStocks sera chamada pela action initStocks
         setStocks(state, payload) {
@@ -18,6 +24,14 @@ export default {
         // App.vue
         initStocks({ commit }) {
             commit('setStocks', stocks)
+        },
+        // as actions são acionadas pelo dispatch
+        buyStock({ commit }, order) {
+            // o commit, chama metodos mutations
+
+            // chama uma mutations 'buyStock' em portfolio;
+            // vale lembrar que mutations são setters
+            commit('buyStock', order)
         }
     }
 }

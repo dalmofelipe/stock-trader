@@ -36,7 +36,7 @@
 export default {
     computed: {
         funds() {
-            return 10000
+            return this.$store.getters.funds
         }
     }
 }
