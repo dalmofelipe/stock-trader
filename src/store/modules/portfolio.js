@@ -8,6 +8,22 @@ export default {
         // mapeado em uma propriedade computada
         funds(state) {
             return state.funds
+        },
+        /* Extremamente didatico */
+        // o array de stocks do portfolio possui infomações de id, e quantidade
+        // que um usuário possui. 
+        // Uma maneira de recuperar os dados das ações é buscando pelo getters
+        // a ação necessária
+        stocksPortfolio(state, getters){
+            return state.stocks.map(stock => {
+                const res = getters.stocks.find(e => e.id == stock.id)
+                return {
+                    id: stock.id,
+                    quantity: stock.quantity,
+                    price: res.price,
+                    name: res.name
+                }
+            })
         }
     },
     mutations: {
@@ -34,6 +50,27 @@ export default {
 
             // atualiza o saldo do portfolio
             state.funds -= order.quantity * order.price
+        },
+        sellStock(state, order) {
+            // busca nas açoes no portfolio, uma ação para venda
+            const res = state.stocks.find(e => e.id == order.id)
+
+            // se a quantidade de ações do portfolio for maior que da ordem de venda
+            if(res.quantity > order.quantity) {
+                // atualizar a quantidade de ações
+                res.quantity -= order.quantity
+            } else {
+                // caso contrario, todas ações serão vendidas
+                state.stocks.splice(state.stocks.indexOf(res), 1)
+            }
+
+            // atualiza somando a quantia ao saldo
+            state.funds += order.quantity * order.price
+        }
+    },
+    actions: {
+        sellStock({ commit }, order) {
+            commit('sellStock', order)
         }
     }
 }
