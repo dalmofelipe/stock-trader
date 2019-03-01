@@ -5,8 +5,18 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 import router from './router'
+import store from './store/store'
+
+Vue.filter('moeda', valor => {
+    return valor.toLocaleString("pt-BR", { 
+        minimumFractionDigits: 2 , 
+        style: 'currency', 
+        currency: 'BRL' 
+    })
+})
 
 new Vue({
     router,
+    store,
     render: h => h(App),
 }).$mount('#app')
