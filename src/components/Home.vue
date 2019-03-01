@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <h1 class="display-3 font-weight-light indigo--text mb-4">
-            Negocie na bolsa de valores
+            Bolsa de Valores
         </h1>
         <v-btn fab dark large color="purple">
             <v-icon dark>android</v-icon>
