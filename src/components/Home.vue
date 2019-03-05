@@ -7,13 +7,13 @@
             <v-icon dark>android</v-icon>
         </v-btn>
         <v-tooltip bottom>
-            <v-btn fab dark large color="success" target="_blank" slot="activator">
+            <v-btn fab dark large color="success" slot="activator">
                 <v-icon large dark>cloud_upload</v-icon>
             </v-btn>
             <span>Salvar Dados</span>
         </v-tooltip>
         <v-tooltip bottom>
-            <v-btn fab dark large color="pink" target="_blank" slot="activator">
+            <v-btn fab dark large color="pink" slot="activator">
                 <v-icon large dark>cloud_download</v-icon>
             </v-btn>
             <span>Carregar Dados</span>
@@ -21,7 +21,7 @@
 
         <br>
         <v-tooltip left>
-            <v-btn icon large href="" target="_blank" slot="activator">
+            <v-btn icon large href="" slot="activator">
                 <v-icon large>code</v-icon>
             </v-btn>
             <span>Source</span>

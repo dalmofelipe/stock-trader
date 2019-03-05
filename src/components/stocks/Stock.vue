@@ -3,7 +3,7 @@
         <v-card class="success white--text">
             <v-card-title class="title">
                 <strong>
-                    {{ stock.name }} - 
+                    {{ stock.name }} | 
                     <small>
                         {{ stock.price | moeda }}
                     </small>

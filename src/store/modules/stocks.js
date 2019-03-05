@@ -11,14 +11,21 @@ export default {
             return state.stocks
         }
     },
+    // por convenção; as mutations devem ser SÍNCRONAS
     mutations: {
         // setStocks sera chamada pela action initStocks
         setStocks(state, payload) {
             state.stocks = payload
             // Vue-Tools 
             // console.log('stocks', state.stocks)
+        },
+        randomizePrices(state) {
+            state.stocks.forEach(element => {
+                element.price = element.price * (1 + (Math.random() - 0.45))
+            })
         }
     },
+    // tambem, por convenção; as actions podem ou não serem ASSÍNCRONAS
     actions: {
         // initStocks sera chamada ao estagio created() do component
         // App.vue
@@ -32,6 +39,11 @@ export default {
             // chama uma mutations 'buyStock' em portfolio;
             // vale lembrar que mutations são setters
             commit('buyStock', order)
+        },
+        randomizePrices({ commit }){
+            setTimeout(() => {
+                commit('randomizePrices')
+            }, 500)
         }
     }
 }

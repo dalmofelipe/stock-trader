@@ -12,7 +12,7 @@
         <v-spacer></v-spacer>
         
         <v-toolbar-items class="hidden-sm-and-down">
-            <v-btn flat >Finalizar Dia</v-btn>
+            <v-btn flat @click="closeDay">Finalizar Dia</v-btn>
             <!-- um menu dropdown -->
             <v-menu offset-y>
                 <v-btn flat slot="activator">Salvar & Carregar</v-btn>
@@ -49,6 +49,9 @@ export default {
         Poderia ser feito por emissão de eventos */
         swapDrawer() {
             this.$store.state.drawer = !this.$store.state.drawer
+        },
+        closeDay(){
+            this.$store.dispatch('randomizePrices')
         }
     },
     computed: {
