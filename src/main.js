@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/axios' // com apenas esse import o axios é plugado no vue
 import './plugins/vuetify'
 import App from './App.vue'
 

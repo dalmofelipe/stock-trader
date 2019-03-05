@@ -21,7 +21,7 @@ export default {
         },
         randomizePrices(state) {
             state.stocks.forEach(element => {
-                element.price = element.price * (1 + (Math.random() - 0.45))
+                element.price = Math.round(element.price) * (1 + (Math.random() - 0.47))
             })
         }
     },
@@ -41,9 +41,9 @@ export default {
             commit('buyStock', order)
         },
         randomizePrices({ commit }){
-            setTimeout(() => {
+            // setTimeout(() => {
                 commit('randomizePrices')
-            }, 500)
+            // }, 500)
         }
     }
 }

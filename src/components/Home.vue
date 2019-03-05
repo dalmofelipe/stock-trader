@@ -7,13 +7,13 @@
             <v-icon dark>android</v-icon>
         </v-btn>
         <v-tooltip bottom>
-            <v-btn fab dark large color="success" slot="activator">
+            <v-btn fab dark large color="success" slot="activator" @click="saveData" >
                 <v-icon large dark>cloud_upload</v-icon>
             </v-btn>
             <span>Salvar Dados</span>
         </v-tooltip>
         <v-tooltip bottom>
-            <v-btn fab dark large color="pink" slot="activator">
+            <v-btn fab dark large color="pink" slot="activator" @click="loadDataLocal">
                 <v-icon large dark>cloud_download</v-icon>
             </v-btn>
             <span>Carregar Dados</span>
@@ -33,7 +33,25 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
+    
+    methods: {
+        ...mapActions(['loadData']),
+        saveData() {
+            const { stocks, funds, stocksPortfolio } = this.$store.getters
+
+            this.$http.put('data.json', { stocks, funds, stocksPortfolio })
+                // eslint-disable-next-line
+                //.then(res => console.log('res', res))
+                // eslint-disable-next-line
+                // .catch(err => console.error('deu ruim', err))
+        },
+        loadDataLocal() {
+            this.loadData()
+        }
+    },
     computed: {
         funds() {
             return this.$store.getters.funds

@@ -14,18 +14,14 @@
                 <span>Comprar Ações</span>
             </v-tooltip>
         </div>
-        <!-- <Alerta v-show="stocks.length <= 0" cor="blue" icon="info">
-            Oppss... Portfolio vazio...
-        </Alerta> -->
     </div>
 </template>
 
 <script>
 import Stock from './Stock.vue'
-import Alerta from '../template/Alerta.vue'
 
 export default {
-    components: { Stock, Alerta },
+    components: { Stock },
     computed: {
         stocks() {
             return this.$store.getters.stocksPortfolio

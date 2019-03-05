@@ -17,10 +17,10 @@
             <v-menu offset-y>
                 <v-btn flat slot="activator">Salvar & Carregar</v-btn>
                 <v-list>
-                    <v-list-tile >
+                    <v-list-tile @click="saveData">
                         <v-list-tile-title>Salva</v-list-tile-title>
                     </v-list-tile>
-                    <v-list-tile >
+                    <v-list-tile @click="loadDataLocal">
                         <v-list-tile-title>Carregar Dados</v-list-tile-title>
                     </v-list-tile>
                 </v-list>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     data() {
         return {
@@ -45,6 +47,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['loadData']),
         /* o status da navbar é controlado pelo state do vuex
         Poderia ser feito por emissão de eventos */
         swapDrawer() {
@@ -52,6 +55,17 @@ export default {
         },
         closeDay(){
             this.$store.dispatch('randomizePrices')
+        },
+        saveData() {
+            const { stocks, funds, stocksPortfolio } = this.$store.getters
+            this.$http.put('data.json', { stocks, funds, stocksPortfolio })
+                // eslint-disable-next-line
+                // .then(res => console.log('res', res))
+                // eslint-disable-next-line
+                // .catch(err => console.error('deu ruim', err))
+        },
+        loadDataLocal() {
+            this.loadData()
         }
     },
     computed: {

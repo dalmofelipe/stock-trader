@@ -27,6 +27,10 @@ export default {
         }
     },
     mutations: {
+        setPortfolio(state, portfolio) {
+            state.funds = portfolio.funds
+            state.stocks = portfolio.stocksPortfolio ? portfolio.stocksPortfolio : []
+        },
         // buyStock é setter de portfolio
         buyStock(state, order) {
             // verifica se o usuário já possui ações desta empresa
